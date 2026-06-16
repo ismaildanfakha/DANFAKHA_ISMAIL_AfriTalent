@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AfriTalent - Connexion</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0a0c10 0%, #1a1d2e 100%);
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* ===== CONTENEUR ===== */
+        .login-wrapper {
+            width: 420px;
+            max-width: 95%;
+        }
+        
+        /* ===== CARTE ===== */
+        .form-card {
+            position: relative;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 20px;
+            padding: 40px 35px;
+            backdrop-filter: blur(10px);
+            border : 2px solid green;
+            overflow: hidden;
+            margin: 5px;
+        }
+        
+        /* ===== BORDURE ANIMÉE (en arrière-plan) ===== */
+        .animated-border {
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(0deg, transparent, transparent, #22c55e, #0ea5e9, #22c55e);
+            border-radius: 22px;
+            z-index: -10;
+            animation: borderRotate 6s linear infinite;
+        }
+        
+        @keyframes borderRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* ===== CONTENU (au-dessus) ===== */
+        .form-content {
+            position: relative;
+            z-index: 100;
+            border : 2px solid red;
+        }
+        
+        /* ===== TITRE ===== */
+        .form-card h2 {
+            text-align: center;
+            font-weight: 700;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #22c55e, #0ea5e9);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        /* ===== INPUTS ===== */
+        .input-box {
+            position: relative;
+            margin-top: 35px;
+            border : 2px solid var(--primary);
+            border-radius: 10px;
+        }
+        
+        .input-box input {
+            width: 100%;
+            padding: 20px 10px 10px;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: white;
+            font-size: 1em;
+        }
+        
+        .input-box span {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            padding: 20px 10px 10px;
+            font-size: 1em;
+            color: rgba(255, 255, 255, 0.6);
+            transition: 0.3s;
+            pointer-events: none;
+        }
+        
+        .input-box input:focus ~ span,
+        .input-box input:valid ~ span {
+            color: #22c55e;
+            font-size: 0.75em;
+            transform: translateY(-35px);
+        }
+        
+        .input-box i {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #22c55e, #0ea5e9);
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+        
+        .input-box input:focus ~ i,
+        .input-box input:valid ~ i {
+            height: 44px;
+            background: rgba(34, 197, 94, 0.15);
+        }
+        
+        /* ===== LIENS ===== */
+        .form-links {
+            text-align: right;
+            margin: 20px 0;
+        }
+        
+        .form-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: 0.3s;
+        }
+        
+        .form-links a:hover {
+            color: #22c55e;
+        }
+        
+        /* ===== BOUTON ===== */
+        .btn-login {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .btn-login:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(34, 197, 94, 0.3);
+        }
+        
+        /* ===== TOGGLE ===== */
+        .toggle-form {
+            text-align: center;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .toggle-form a {
+            color: #22c55e;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .toggle-form a:hover {
+            text-decoration: underline;
+        }
+        
+        /* ===== MESSAGES ===== */
+        .form-message {
+            text-align: center;
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+        }
+        
+        .error-msg {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            border: 1px solid #ef4444;
+        }
+        
+        .success-msg {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+            border: 1px solid #22c55e;
+        }
+        
+        /* Cache */
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-wrapper">
+        
+        <!-- ===== FORMULAIRE CONNEXION ===== -->
+        <div id="loginCard" class="form-card">
+            <div class="animated-border"></div>
+            <div class="form-content">
+                <h2><i class="bi bi-box-arrow-in-right"></i> Connexion</h2>
+                <form id="loginForm">
+                    <div class="input-box">
+                        <input type="email" id="loginEmail" required>
+                        <span>Email</span>
+                        <i></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="password" id="loginPassword" required>
+                        <span>Mot de passe</span>
+                        <i></i>
+                    </div>
+                    <div class="form-links">
+                        <a href="#">Mot de passe oublié ?</a>
+                    </div>
+                    <button type="submit" class="btn-login">Se connecter</button>
+                    <div id="loginMessage" class="form-message"></div>
+                </form>
+                <div class="toggle-form">
+                    Pas encore de compte ? <a href="#" id="showRegisterBtn">Créer un compte</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ===== FORMULAIRE INSCRIPTION ===== -->
+        <div id="registerCard" class="form-card hidden">
+            <div class="animated-border"></div>
+            <div class="form-content">
+                <h2><i class="bi bi-person-plus"></i> Inscription</h2>
+                <form id="registerForm">
+                    <div class="input-box">
+                        <input type="text" id="regNom" required>
+                        <span>Nom complet</span>
+                        <i></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="email" id="regEmail" required>
+                        <span>Email</span>
+                        <i></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="password" id="regPassword" required>
+                        <span>Mot de passe</span>
+                        <i></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="password" id="regConfirmPassword" required>
+                        <span>Confirmer</span>
+                        <i></i>
+                    </div>
+                    <button type="submit" class="btn-login">S'inscrire</button>
+                    <div id="registerMessage" class="form-message"></div>
+                </form>
+                <div class="toggle-form">
+                    Déjà un compte ? <a href="#" id="showLoginBtn">Se connecter</a>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+    <script>
+        // Bascule entre les formulaires
+        const loginCard = document.getElementById('loginCard');
+        const registerCard = document.getElementById('registerCard');
+        const showRegisterBtn = document.getElementById('showRegisterBtn');
+        const showLoginBtn = document.getElementById('showLoginBtn');
+        
+        showRegisterBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginCard.classList.add('hidden');
+            registerCard.classList.remove('hidden');
+        });
+        
+        showLoginBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            registerCard.classList.add('hidden');
+            loginCard.classList.remove('hidden');
+        });
+        
+        // Fonction message
+        function showMsg(element, message, type) {
+            element.innerHTML = message;
+            element.className = 'form-message ' + (type === 'error' ? 'error-msg' : 'success-msg');
+            setTimeout(() => {
+                if (element.innerHTML === message) {
+                    element.innerHTML = '';
+                    element.className = 'form-message';
+                }
+            }, 3000);
+        }
+        
+        // Connexion
+        const loginForm = document.getElementById('loginForm');
+        const loginMessage = document.getElementById('loginMessage');
+        
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail');
+            const password = document.getElementById('loginPassword');
+            
+            if (!email.value.trim() || !email.value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+                showMsg(loginMessage, 'Email invalide', 'error');
+                return;
+            }
+            if (!password.value.trim() || password.value.length < 6) {
+                showMsg(loginMessage, 'Mot de passe invalide (min 6 caractères)', 'error');
+                return;
+            }
+            
+            const users = JSON.parse(localStorage.getItem('afritalent_users')) || [];
+            const userExists = users.find(u => u.email === email.value && u.password === password.value);
+            
+            if (userExists) {
+                showMsg(loginMessage, '✅ Connexion réussie !', 'success');
+                localStorage.setItem('afritalent_current_user', JSON.stringify(userExists));
+                setTimeout(() => window.location.href = 'index.html', 1500);
+            } else {
+                showMsg(loginMessage, '❌ Email ou mot de passe incorrect', 'error');
+            }
+        });
+        
+        // Inscription
+        const registerForm = document.getElementById('registerForm');
+        const registerMessage = document.getElementById('registerMessage');
+        
+        registerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const nom = document.getElementById('regNom');
+            const email = document.getElementById('regEmail');
+            const password = document.getElementById('regPassword');
+            const confirm = document.getElementById('regConfirmPassword');
+            
+            if (!nom.value.trim()) {
+                showMsg(registerMessage, 'Nom requis', 'error');
+                return;
+            }
+            if (!email.value.trim() || !email.value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+                showMsg(registerMessage, 'Email invalide', 'error');
+                return;
+            }
+            if (!password.value.trim() || password.value.length < 6) {
+                showMsg(registerMessage, 'Mot de passe (min 6 caractères)', 'error');
+                return;
+            }
+            if (password.value !== confirm.value) {
+                showMsg(registerMessage, 'Les mots de passe ne correspondent pas', 'error');
+                return;
+            }
+            
+            const users = JSON.parse(localStorage.getItem('afritalent_users')) || [];
+            if (users.find(u => u.email === email.value)) {
+                showMsg(registerMessage, 'Cet email est déjà utilisé', 'error');
+                return;
+            }
+            
+            users.push({ nom: nom.value, email: email.value, password: password.value });
+            localStorage.setItem('afritalent_users', JSON.stringify(users));
+            showMsg(registerMessage, '✅ Inscription réussie !', 'success');
+            
+            setTimeout(() => {
+                registerCard.classList.add('hidden');
+                loginCard.classList.remove('hidden');
+                registerForm.reset();
+                registerMessage.innerHTML = '';
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
