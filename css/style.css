@@ -868,7 +868,7 @@ footer a:hover { color: var(--primary); }
   opacity: 0; transition: all 0.5s; border-radius: 0px 25px 0px  25px;
 }
 .team-card:hover .team-overlay, .freelance-card:hover .freelance-overlay {
-  height: 70%; opacity: 1;transform: translateY(-2px);
+  height: 73%; opacity: 1;transform: translateY(-2px);
 }
 .team-card:hover img, .freelance-card:hover img { transform: scale(1.05); }
 
