@@ -1,8 +1,8 @@
 
 :root {
   --primary: #22c55e;        /* vert principal */
-  --primary-dark: #16a34a;   /* vert foncé */
-  --secondary: #0ea5e9;      /* bleu clair pour contraste (garde un peu de bleu ou remplace aussi) */
+  --primary-dark: #16a34a;  
+  --secondary: #0ea5e9;      
   --bg-body: #ffffff;
   --bg-surface: #f8f9fa;
   --bg-card: #ffffff;
