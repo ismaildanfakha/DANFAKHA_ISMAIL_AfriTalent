@@ -68,7 +68,8 @@ if (fadeElements.length) {
     });
 }
 
-// ===== FILTRAGE DES FREELANCES =====
+// ====FILTRAGE DES FREELANCES ====
+
 document.addEventListener('DOMContentLoaded', function() {
     const filterBtns = document.querySelectorAll('.filter-btn');
     const freelanceCards = document.querySelectorAll('.freelance-card');
@@ -101,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// ===== ANNÉE DYNAMIQUE =====
+// === ANNÉE DYNAMIQUE ====
 const yearSpan = document.getElementById('currentYear');
 if (yearSpan) {
     yearSpan.innerText = new Date().getFullYear();
