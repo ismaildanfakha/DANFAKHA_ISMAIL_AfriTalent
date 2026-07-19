@@ -32,6 +32,7 @@ if (backBtn) {
 }
 
 // ===== COMPTEURS ANIMÉS =====
+// ===== COMPTEURS ANIMÉS =====
 const counters = document.querySelectorAll('.counter');
 if (counters.length) {
     const observerCount = new IntersectionObserver((entries) => {
